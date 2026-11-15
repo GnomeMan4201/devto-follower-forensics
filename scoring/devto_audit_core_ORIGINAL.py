@@ -5,8 +5,9 @@
 #      public_articles_count (0).
 #   2. The default-avatar check uses endswith(), which never matches DEV's proxied URLs.
 #   3. The "if joined:" block below has only a comment as its body, so this file does
-#      not import (IndentationError). This copy is the state of the repo at the time of
-#      the correction; the May 2026 CSV was produced by an earlier, runnable revision.
+#      not import (IndentationError). This is the file as it stood in the repo at the
+#      time of the correction; the exact revision that produced the May 2026 CSV is not
+#      preserved here.
 # See devto_audit_core_FIXED.py and ../data/CSV_NOTE.md.
 
 import csv
