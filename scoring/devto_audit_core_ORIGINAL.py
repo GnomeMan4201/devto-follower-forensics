@@ -1,3 +1,14 @@
+# ARCHIVAL COPY - kept exactly as it was, bugs included. Do not run.
+# Known defects:
+#   1. Line ~57: profile.get("followed_users_count", 1) fills a field the API never
+#      returns, so every account gets Following=1. Same for followers_count (0) and
+#      public_articles_count (0).
+#   2. The default-avatar check uses endswith(), which never matches DEV's proxied URLs.
+#   3. The "if joined:" block below has only a comment as its body, so this file does
+#      not import (IndentationError). This copy is the state of the repo at the time of
+#      the correction; the May 2026 CSV was produced by an earlier, runnable revision.
+# See devto_audit_core_FIXED.py and ../data/CSV_NOTE.md.
+
 import csv
 import os
 import re

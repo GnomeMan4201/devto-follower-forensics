@@ -8,7 +8,7 @@ The short version: three central claims in that post came from code defaults and
 
 | Path | What it is |
 | --- | --- |
-| `scoring/devto_audit_core_ORIGINAL.py` | The audit code behind the original post, unchanged. Line 57 is the `Following=1` bug. |
+| `scoring/devto_audit_core_ORIGINAL.py` | Archival copy of the audit code behind the original post, unchanged apart from a header comment. The `Following=1` bug is the `followed_users_count` line. It also has an indentation error and does not run as-is; see the header. |
 | `scoring/devto_audit_core_FIXED.py` | Fixed version: missing API fields are recorded as missing, never filled with defaults. |
 | `tests/test_audit_core.py` | Regression tests for the fix. Run with `python3 -m pytest tests`. |
 | `data/CSV_NOTE.md` | Which columns of the original audit CSV are defaults, and how the published count arose. |
