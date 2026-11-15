@@ -1,0 +1,4 @@
+.devto_key
+*.json
+__pycache__/
+.pytest_cache/
