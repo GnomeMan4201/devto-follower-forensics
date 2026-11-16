@@ -1,0 +1,36 @@
+name: report-card
+# Manual run against the repo owner's DEV account.
+# Needs repo secret DEVTO_KEY. This repo is public, so its Actions logs are too:
+# only report_card.py's output (aggregate, no usernames) is printed. The other
+# scripts' output goes to /dev/null and no caches are uploaded.
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pull data (output suppressed)
+        env:
+          DEVTO_KEY: ${{ secrets.DEVTO_KEY }}
+        run: |
+          test -n "$DEVTO_KEY" || { echo "DEVTO_KEY secret not set"; exit 1; }
+          mkdir work && cd work
+          umask 077
+          printf '%s' "$DEVTO_KEY" > .devto_key
+          for s in waves dig baseline; do
+            echo "running $s.py"
+            python3 ../scripts/$s.py > /dev/null 2>&1 || { echo "$s.py failed (output suppressed; run locally to debug)"; exit 1; }
+          done
+      - name: Report card
+        run: |
+          cd work
+          python3 ../scripts/report_card.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: Remove key and caches
+        if: always()
+        run: rm -rf work
