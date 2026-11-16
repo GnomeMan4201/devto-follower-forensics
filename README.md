@@ -31,6 +31,7 @@ Run in this order:
 4. `baseline.py` samples accounts that do not follow you from the same ID ranges, for a real baseline.
 5. `timing.py` looks at the spacing and order of follows on burst days.
 6. `cadence.py` relates follows to days since your last post.
+7. `report_card.py` prints a fixed-format summary (window, records, blanks) for comparing results across accounts. Post its output when you share numbers.
 
 `cohort.py` and `baseline.py` have my burst windows and ID range written in as constants. Change them to your own.
 
