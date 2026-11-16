@@ -39,7 +39,7 @@ fe = load("follower_engagement.json")
 total_api = fe.get("total_followers") if isinstance(fe, dict) else None
 
 profiles = {}
-for fn in ("profiles.json", "by_username.json", "baseline.json"):
+for fn in ("profiles.json", "baseline.json"):
     d = load(fn) or {}
     for v in d.values():
         if isinstance(v, dict) and v.get("id"):
@@ -67,8 +67,8 @@ print(f"  counted            : {len(kept)}  (window and profiles use only these)
 if total_api is not None:
     print(f"  API total_followers: {total_api}  (gap {total_api - len(kept)} unexplained, not treated as unfollows)")
 print(f"  profiles fetched   : {len(fp)} of {len(kept)} counted ({errs} follower lookups failed and were dropped)")
-print("BLANKS (counted followers with a fetched profile; this is the scripts' sample,")
-print("        weighted toward burst days by dig.py, not a random sample of all followers)")
+print("BLANKS (counted followers with a fetched profile: dig.py's burst/quiet-day sample")
+print("        plus baseline.py's ID-window sample, not a random sample of all followers)")
 if fp:
     for k, label in (("summary", "bio"), ("location", "location"), ("github_username", "github link"),
                      ("website_url", "website"), ("twitter_username", "twitter"), ("joined_at", "joined date")):
@@ -77,6 +77,6 @@ if fp:
     n = sum(1 for p in fp if not any(not blank(p, k) for k in ("summary", "location", "github_username", "website_url", "twitter_username")))
     print(f"  fully blank profile: {n} ({n * 100 // len(fp)}%)")
 else:
-    print("  no profile caches found (run dig.py first)")
+    print("  no profile caches found (run dig.py / baseline.py first)")
 print("  follower/following/post counts: not returned by DEV's user API -> not measured (no defaults)")
 print("```")

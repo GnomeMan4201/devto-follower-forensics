@@ -44,11 +44,22 @@ for name, (lo, hi) in W.items():
         time.sleep(0.6)
 save("baseline.json", cache)
 
-prof = {}
-for fn in ("profiles.json", "by_username.json"):
-    if os.path.exists(fn):
-        for k, v in json.load(open(fn)).items():
-            if v and "_err" not in v: prof[v["id"]] = v
+# Follower side: same sample size per window, fetched by user id into profiles.json
+# (the cache dig.py uses), so this script needs nothing that isn't in this repo.
+pc = json.load(open("profiles.json")) if os.path.exists("profiles.json") else {}
+random.seed(12)
+for name, (lo, hi) in W.items():
+    in_win = sorted(f["user_id"] for f in fol if lo <= f["user_id"] <= hi)
+    random.shuffle(in_win)
+    have = sum(1 for u in in_win if isinstance(pc.get(str(u)), dict) and "_err" not in pc[str(u)])
+    todo = [u for u in in_win if str(u) not in pc][:max(0, TARGET - have)]
+    if todo: print(f"{name}: fetching {len(todo)} follower profiles")
+    for i, uid in enumerate(todo, 1):
+        pc[str(uid)] = get(f"/users/{uid}")
+        if i % 25 == 0: save("profiles.json", pc)
+        time.sleep(0.6)
+save("profiles.json", pc)
+prof = {v["id"]: v for v in pc.values() if isinstance(v, dict) and "_err" not in v and v.get("id")}
 
 def sig(p):
     u = p.get("username", "")
