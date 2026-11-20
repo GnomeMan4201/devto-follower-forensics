@@ -4,6 +4,10 @@ Evidence package for my correction of the May 2026 post "Found 897 Fake Follower
 
 The short version: three central claims in that post came from code defaults and a misread timeline, not from DEV's data. This repo has the code that caused it, the fix, the tests, and the aggregate numbers behind each finding, so you can check the correction or run the same analysis on your own account.
 
+## November 20, 2026: DEV onboarding clarification
+
+[demonstrated here] DEV Community support reports that new members on DEV.to see up to 20 tag-based suggested authors, preselected by default, and that this behavior was active in May and November 2026. [unknown] DEV cannot identify which authors each new user saw or how individual follows originated. This supports a plausible **platform-level explanation**, not proven attribution for this account. See the [evidence addendum](evidence/dev_onboarding_reply_2026-11-20.md) and [updated aggregate interpretation](results/summary.md). The private support email and screenshots are retained outside the public repository.
+
 ## What's here
 
 | Path | What it is |
