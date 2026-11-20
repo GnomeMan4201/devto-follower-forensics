@@ -78,3 +78,11 @@ Post dates shuffled within each month (3,000 shuffles) give a median of 49-59% o
 ## Known data problem
 
 DEV's daily analytics has gaps: some days report views for posts published later, and follows that the follower list dates several days later. Date follows with the follower list's `created_at`, not the analytics.
+
+## November 20, 2026: DEV onboarding support clarification
+
+[demonstrated here] DEV Community support confirmed that, in May and November 2026, DEV's tag-based new-member onboarding presented up to 20 author suggestions preselected by default. Authors of recent, high-scoring posts could be randomly suggested; DEV does not retain impression histories or follow-source fields. This confirms a plausible explanation for publication-linked follower bursts, **not** that this particular account was suggested or what fraction of follows resulted from onboarding.
+
+[reported by me] A follow-up measurement of the November 14 snapshot put **7,809 of 9,638 follows (81.02%)** within a **rolling 72 hours** of a post, compared with a **50.30% median** over 3,000 shuffled publication calendars preserving month, weekday and time of day. That analysis was not independently rerun for this addendum. **Do not conflate** the rolling 72-hour estimate with the **86.8% within 0–3 calendar days** estimate above.
+
+[unknown] Suggestion impressions, attribution of follows to onboarding, and the number of automated accounts remain unmeasured. See [the evidence addendum](../evidence/dev_onboarding_reply_2026-11-20.md) for source status, limitations and falsification test.
